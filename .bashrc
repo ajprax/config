@@ -158,4 +158,4 @@ alias gits='git status'
 alias gka='gitk --all'
 
 #post-review alias
-alias post='post-review -o --branch=master --guess-summary --guess-description'
+alias post='post-review -o --branch=master --guess-summary --guess-description --bugs-closed=`parse_git_branch`'
