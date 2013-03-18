@@ -119,11 +119,12 @@ fi
 export MAVEN_OPTS=-XX:MaxPermSize=512m
 
 # add the current git branch to your shell prompt
-function parse_git_branch {
+function parse_git_branch_w_parens {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
+
  
-export PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w`parse_git_branch`\$ '
+export PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w`parse_git_branch_w_parens`\$ '
 
 # increase ram allocated to Maven
 export MAVEN_OPTS="-XX:PermSize=512M -Xmx2G"
@@ -138,6 +139,23 @@ source ~/bin/kiji-bento-1.0.0-rc5-SNAPSHOT/bin/kiji-env.sh > /dev/null
 alias wibivpn='openvpn --config ~/bin/client.ovpn'
 
 #!/bin/bash
-function vimfind {
+function vifi {
   vim $(find -name $1)
 }
+
+#git aliases
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
+}
+alias gitmom='git merge --ff-only origin/master'
+alias githome='git push ajprax `parse_git_branch`'
+alias gita='git commit -a'
+alias gitaa='git commit -a --amend'
+alias gitb='git checkout -b'
+alias gitc='git checkout'
+alias gitf='git fetch'
+alias gits='git status'
+alias gka='gitk --all'
+
+#post-review alias
+alias post='post-review -o --branch=master --guess-summary --guess-description'
