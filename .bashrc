@@ -154,6 +154,7 @@ alias gitaa='git commit -a --amend'
 alias gitb='git checkout -b'
 alias gitc='git checkout'
 alias gitf='git fetch'
+alias gitr='git rebase'
 alias gits='git status'
 alias gka='gitk --all'
 
