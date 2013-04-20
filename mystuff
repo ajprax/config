@@ -42,4 +42,4 @@ alias post='post-review -o --branch=master --guess-summary --guess-description -
 alias postr='post-review -o -r'
 
 #IntelliJ alias
-alias ij='~/bin/idea-IC-123.169/bin/idea.sh'
+alias ij='~/bin/idea-IC-129.239/bin/idea.sh'
