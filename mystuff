@@ -109,11 +109,11 @@ if [ $? -eq 0 ]; then \
   else \
     # @5 - Changes to working tree
     echo "'$Red'"$(__git_ps1 " (%s)"); \
-    fi) '$Color_Off$PathShort'\$ "; \
+    fi) '$Color_Off$PathShort'"; \
   else \
     # @2 - Prompt when not in GIT repo
-    echo " '$PathShort'\$ "; \
-  fi)'
+    echo " '$PathShort'"; \
+  fi)\n'
 
 # increase ram allocated to Maven
 export MAVEN_OPTS="-XX:PermSize=512M -Xmx2G"
@@ -160,3 +160,6 @@ alias mcv='mvn clean verify'
 alias mcvst='mvn clean verify -DskipTests'
 alias mcc='mvn clean compile'
 alias mct='mvn clean test'
+
+#make git use vim for commit messages
+export GIT_EDITOR="vim"
