@@ -87,7 +87,7 @@ PathFull="\W"
 NewLine="\n"
 Jobs="\j "
 Date="\d"
-History="\! "
+History="\!"
 
 
 # add the current git branch to your shell prompt
@@ -100,7 +100,7 @@ History="\! "
 # experimental PS1
 # export PS1='\[\033[0;34m\]\t \[\033[0m\]${debian_chroot:+($debian_chroot)}\u:\w`colored_git_branch_name`\$ '
 
-export PS1=$Green$History$Yellow$Jobs$Blue$Time24h$Date$Color_Off' \u@\h$(git branch &>/dev/null;\
+export PS1=$Yellow$Jobs$Blue$Time24h$Date$Color_Off' \u@\h$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
   echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
   if [ "$?" -eq "0" ]; then \
@@ -109,10 +109,10 @@ if [ $? -eq 0 ]; then \
   else \
     # @5 - Changes to working tree
     echo "'$Red'"$(__git_ps1 " (%s)"); \
-    fi) '$Color_Off$PathShort$Blue'\n >> '$Color_Off'"; \
+    fi) '$Color_Off$PathShort'\n'$Green$History$Blue' >> '$Color_Off'"; \
   else \
     # @2 - Prompt when not in GIT repo
-    echo " '$PathShort$Blue'\n >> '$Color_Off'"; \
+    echo " '$PathShort'\n'$Green$History$Blue' >> '$Color_Off'"; \
   fi)'
 
 # increase ram allocated to Maven
