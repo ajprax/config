@@ -122,7 +122,7 @@ export MAVEN_OPTS="-XX:PermSize=512M -Xmx2G"
 alias eclipse='~/bin/eclipse/eclipse'
 
 #source bento
-source ~/bin/kiji-bento-albacore/bin/kiji-env.sh > /dev/null
+source ~/bin/kiji-bento-buri/bin/kiji-env.sh > /dev/null
 
 # alias vpn
 alias wibivpn='openvpn --config ~/bin/client.ovpn'
@@ -165,3 +165,12 @@ alias mcist='mvn clean install -DskipTests'
 
 #make git use vim for commit messages
 export GIT_EDITOR="vim"
+
+#kiji-review aliases
+alias kri='kiji-review init'
+alias krm='kiji-review mail'
+alias kre='kiji-review export'
+alias krs='kiji-review submit'
+
+#wibi devtools scripts
+export PATH=$PATH:$HOME/src/wibi/devtools/bin/
