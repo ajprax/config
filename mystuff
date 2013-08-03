@@ -122,7 +122,7 @@ export MAVEN_OPTS="-XX:PermSize=2G -Xmx2G"
 source ~/lib/kiji-bento-chirashi/bin/kiji-env.sh > /dev/null
 
 # alias vpn
-alias wibivpn='openvpn --config ~/bin/client.ovpn'
+alias wibivpn='sudo openvpn --script-security 3 system  --config ~/bin/client.ovpn'
 
 #!/bin/bash
 function vifi {
