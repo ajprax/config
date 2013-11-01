@@ -118,11 +118,8 @@ if [ $? -eq 0 ]; then \
 # increase ram allocated to Maven
 export MAVEN_OPTS="-XX:PermSize=512M -Xmx2G"
 
-# alias eclipse
-alias eclipse='~/bin/eclipse/eclipse'
-
 #source bento
-source ~/bin/kiji-bento-buri/bin/kiji-env.sh > /dev/null
+source ~/bin/kiji-bento-chirashi/bin/kiji-env.sh > /dev/null
 
 # alias vpn
 alias wibivpn='openvpn --config ~/bin/client.ovpn'
@@ -142,10 +139,11 @@ alias gita='git commit -a'
 alias gitaa='git commit -a --amend'
 alias gitb='git checkout -b'
 alias gitc='git checkout'
-alias gitf='git fetch'
+alias gitf='git fetch --all'
 alias gitff='git merge --ff-only'
 alias gitr='git rebase'
 alias gits='git status'
+alias gitu='git fetch --all && git checkout master && git merge --ff-only origin/master'
 alias gka='gitk --all'
 
 #post-review alias
@@ -153,7 +151,9 @@ alias post='post-review -o --branch=master --guess-summary --guess-description -
 alias postr='post-review -o -r'
 
 #IntelliJ alias
-alias ij='~/bin/idea-IC-129.161/bin/idea.sh'
+alias ij='optirun ~/bin/idea-IC-129.161/bin/idea.sh'
+#PyCharm alias
+alias pc='~/bin/pycharm-community-3.0/bin/pycharm.sh'
 
 #Maven aliases
 alias mcv='mvn clean verify'
@@ -174,3 +174,6 @@ alias krs='kiji-review submit'
 
 #wibi devtools scripts
 export PATH=$PATH:$HOME/src/wibi/devtools/bin/
+
+#general aliases
+alias c='clear'
