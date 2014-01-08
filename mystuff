@@ -116,10 +116,10 @@ if [ $? -eq 0 ]; then \
   fi)'
 
 # increase ram allocated to Maven
-export MAVEN_OPTS="-XX:PermSize=512M -Xmx2G"
+export MAVEN_OPTS="-XX:PermSize=2G -Xmx2G"
 
 #source bento
-source ~/bin/kiji-bento-chirashi/bin/kiji-env.sh > /dev/null
+source ~/lib/kiji-bento-chirashi/bin/kiji-env.sh > /dev/null
 
 # alias vpn
 alias wibivpn='openvpn --config ~/bin/client.ovpn'
@@ -151,9 +151,9 @@ alias post='post-review -o --branch=master --guess-summary --guess-description -
 alias postr='post-review -o -r'
 
 #IntelliJ alias
-alias ij='optirun ~/bin/idea-IC-129.161/bin/idea.sh'
+alias ij='~/lib/idea/bin/idea.sh'
 #PyCharm alias
-alias pc='~/bin/pycharm-community-3.0/bin/pycharm.sh'
+alias pc='~/lib/pycharm-community-3.0.2/bin/pycharm.sh'
 
 #Maven aliases
 alias mcv='mvn clean verify'
