@@ -175,5 +175,12 @@ alias krs='kiji-review submit'
 #wibi devtools scripts
 export PATH=$PATH:$HOME/src/wibi/devtools/bin/
 
+#alias arduino
+alias arduino='sudo ~/bin/arduino-1.5.2/arduino'
+
+#dart aliases
+alias dart='~/bin/dart/DartEditor'
+
 #general aliases
 alias c='clear'
+
