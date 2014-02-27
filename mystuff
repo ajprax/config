@@ -133,7 +133,7 @@ alias gitff='git merge --ff-only'
 alias gitr='git rebase'
 alias gits='git status'
 alias gitu='git fetch --all && git checkout master && git merge --ff-only origin/master'
-alias gka='gitk --all'
+alias gka='gitk --all &'
 
 function gituall {
   for i in $(ls) ; do
