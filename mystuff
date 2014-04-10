@@ -146,6 +146,12 @@ function gituall {
   done
 }
 
+function loop {
+  for i in $(eval echo "{1..$1}") ; do
+    echo $i
+    $2
+  done
+}
 
 #post-review alias
 alias post='post-review -o --branch=master --guess-summary --guess-description --bugs-closed=`parse_git_branch`'
@@ -154,7 +160,7 @@ alias postr='post-review -o -r'
 #IntelliJ alias
 alias ij='~/lib/idea/bin/idea.sh &'
 #PyCharm alias
-alias pc='~/lib/pycharm-community-3.0.2/bin/pycharm.sh &'
+alias pc='~/lib/pycharm-community/bin/pycharm.sh &'
 
 #Maven aliases
 alias mcv='mvn clean verify'
@@ -163,6 +169,7 @@ alias mcc='mvn clean compile'
 alias mct='mvn clean test'
 alias mci='mvn clean install'
 alias mcist='mvn clean install -DskipTests'
+alias mregr='mvn versions:update-properties && mvn clean verify && mvn versions:revert'
 
 #make git use vim for commit messages
 export GIT_EDITOR="vim"
