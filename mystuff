@@ -89,7 +89,7 @@ Jobs="\j "
 Date="\d"
 History="\!"
 
-export PS1=$Yellow$Jobs$Blue$Time24h$Date$Color_Off' \u@\h$(git branch &>/dev/null;\
+export PS1=$Red`printf '                                                  \n\r' | tr ' ' -`$Yellow$Jobs$Blue$Time24h$Date$Color_Off' \u@\h$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
   echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
   if [ "$?" -eq "0" ]; then \
@@ -108,7 +108,7 @@ if [ $? -eq 0 ]; then \
 export MAVEN_OPTS="-XX:PermSize=2G -Xmx2G"
 
 #source bento
-source ~/lib/kiji-bento-dashi/bin/kiji-env.sh > /dev/null
+source ~/lib/kiji-bento-ebi/bin/kiji-env.sh > /dev/null
 
 # alias vpn
 alias wibivpn='sudo openvpn --script-security 3 system  --config ~/bin/client.ovpn'
@@ -131,6 +131,7 @@ alias gitc='git checkout'
 alias gitf='git fetch --all'
 alias gitff='git merge --ff-only'
 alias gitr='git rebase'
+alias gitrc='git rebase --continue'
 alias gits='git status'
 alias gitu='git fetch --all && git checkout master && git merge --ff-only origin/master'
 alias gka='gitk --all &'
@@ -150,6 +151,9 @@ function loop {
   for i in $(eval echo "{1..$1}") ; do
     echo $i
     $2
+    if [ $? -ne 0 ]; then
+      break
+    fi
   done
 }
 
@@ -178,6 +182,7 @@ export GIT_EDITOR="vim"
 alias kri='kiji-review init'
 alias krm='kiji-review mail'
 alias kre='kiji-review export'
+alias krep='kiji-reivew export --publish'
 alias krs='kiji-review submit'
 
 #wibi devtools scripts
