@@ -182,7 +182,7 @@ export GIT_EDITOR="vim"
 alias kri='kiji-review init'
 alias krm='kiji-review mail'
 alias kre='kiji-review export'
-alias krep='kiji-reivew export --publish'
+alias krep='kiji-review export --publish'
 alias krs='kiji-review submit'
 
 #wibi devtools scripts
