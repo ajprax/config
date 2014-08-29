@@ -108,7 +108,7 @@ if [ $? -eq 0 ]; then \
 export MAVEN_OPTS="-XX:PermSize=2G -Xmx2G"
 
 #source bento
-source ~/lib/kiji-bento-ebi/bin/kiji-env.sh > /dev/null
+source ~/lib/kiji-bento-fugu/bin/kiji-env.sh > /dev/null
 
 # alias vpn
 alias wibivpn='sudo openvpn --script-security 3 system  --config ~/bin/client.ovpn'
@@ -123,16 +123,16 @@ function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
 alias gitmom='git merge --ff-only origin/master'
-alias githome='git push ajprax `parse_git_branch`'
+alias githome='true && git push ajprax $(parse_git_branch)'
 alias gita='git commit -a'
 alias gitaa='git commit -a --amend'
 alias gitb='git checkout -b'
 alias gitc='git checkout'
-alias gitf='git fetch --all'
+alias gitf='true && git fetch --all --prune'
 alias gitff='git merge --ff-only'
 alias gitr='git rebase'
 alias gitrc='git rebase --continue'
-alias gits='git status'
+alias gits='true && git status'
 alias gitu='git fetch --all && git checkout master && git merge --ff-only origin/master'
 alias gka='gitk --all &'
 
@@ -145,6 +145,10 @@ function gituall {
       cd -
     fi
   done
+}
+
+function gsfe {
+  git submodule foreach "bash -i -c \"$1\""
 }
 
 function loop {
@@ -167,26 +171,39 @@ alias ij='~/lib/idea/bin/idea.sh &'
 alias pc='~/lib/pycharm-community/bin/pycharm.sh &'
 
 #Maven aliases
-alias mcv='mvn clean verify'
-alias mcvst='mvn clean verify -DskipTests'
-alias mcc='mvn clean compile'
-alias mct='mvn clean test'
-alias mci='mvn clean install'
-alias mcist='mvn clean install -DskipTests'
-alias mregr='mvn versions:update-properties && mvn clean verify && mvn versions:revert'
+
+#kiji-maven aliases
+alias mcc='kiji-maven clean compile'
+alias mct='kiji-maven clean test'
+alias mcv='kiji-maven clean verify'
+alias mcvst='kiji-maven clean verify -DskipTests'
+alias mcvstsv='kiji-maven clean verify -DskipTests -DskipVerify'
+alias mci='kiji-maven clean install'
+alias mcist='kiji-maven clean install -DskipTests'
+alias mcistsv='kiji-maven clean install -DskipTests -DskipVerify'
+alias mregr='kiji-maven versions:update-properties && kiji-maven clean verify && kiji-maven versions:revert'
+alias mcp='kiji-maven clean package'
+alias mcpst='kiji-maven clean package -DskipTests'
+alias mcpstsv='kiji-maven clean package -DskipTests -DskipVerify'
 
 #make git use vim for commit messages
 export GIT_EDITOR="vim"
 
 #kiji-review aliases
+alias kr='kiji-review'
 alias kri='kiji-review init'
 alias krm='kiji-review mail'
 alias kre='kiji-review export'
 alias krep='kiji-review export --publish'
 alias krs='kiji-review submit && git checkout master && git merge --ff-only origin/master'
 
-#wibi devtools scripts
-export PATH=$PATH:$HOME/src/wibi/devtools/bin/
+
+#kiji-build aliases
+alias kb='kiji-build'
+
+#wibi evtools scripts
+#disabled in favor of pip install
+#export PATH=$PATH:$HOME/src/wibi/devtools/bin/
 
 #alias arduino
 alias arduino='sudo ~/bin/arduino-1.5.2/arduino'
