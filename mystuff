@@ -108,7 +108,8 @@ if [ $? -eq 0 ]; then \
 export MAVEN_OPTS="-XX:PermSize=2G -Xmx2G"
 
 #source bento
-source ~/lib/kiji-bento-fugu/bin/kiji-env.sh > /dev/null
+#Disable in favor of docker bento
+#source ~/lib/kiji-bento-fugu/bin/kiji-env.sh > /dev/null
 
 # alias vpn
 alias wibivpn='sudo openvpn --script-security 3 system  --config ~/bin/client.ovpn'
@@ -159,6 +160,12 @@ function loop {
       break
     fi
   done
+}
+
+docker-enter() {
+  pid=$(docker inspect --format {{.State.Pid}} $1)
+  shift
+  sudo nsenter --target "$pid" --mount --uts --ipc --net --pid "$@"
 }
 
 #post-review alias
