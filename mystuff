@@ -220,4 +220,4 @@ alias dart='~/bin/dart/DartEditor &'
 
 #general aliases
 alias c='clear'
-
+alias lock='i3lock --color=000000'
