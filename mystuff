@@ -168,6 +168,10 @@ docker-enter() {
   sudo nsenter --target "$pid" --mount --uts --ipc --net --pid "$@"
 }
 
+function pomgrep() {
+  find -name pom.xml -exec grep -Hnr --color ${@} "{}" ";"
+}
+
 #post-review alias
 alias post='post-review -o --branch=master --guess-summary --guess-description --bugs-closed=`parse_git_branch`'
 alias postr='post-review -o -r'
@@ -202,7 +206,10 @@ alias kri='kiji-review init'
 alias krm='kiji-review mail'
 alias kre='kiji-review export'
 alias krep='kiji-review export --publish'
-alias krs='kiji-review submit && git checkout master && git merge --ff-only origin/master'
+alias krepr='kiji-review-export --publish --message="rebased"'
+krs() {
+  kiji-review submit "$@" && git checkout master && git merge --ff-only origin/master
+}
 
 
 #kiji-build aliases
