@@ -133,6 +133,8 @@ alias gitf='true && git fetch --all --prune'
 alias gitff='git merge --ff-only'
 alias gitr='git rebase'
 alias gitrc='git rebase --continue'
+alias gitrm='git rebase master'
+alias gitrom='git rebase origin/master'
 alias gits='true && git status'
 alias gitu='git fetch --all && git checkout master && git merge --ff-only origin/master'
 alias gka='gitk --all &'
@@ -206,7 +208,7 @@ alias kri='kiji-review init'
 alias krm='kiji-review mail'
 alias kre='kiji-review export'
 alias krep='kiji-review export --publish'
-alias krepr='kiji-review-export --publish --message="rebased"'
+alias krepr='kiji-review export --publish --message="rebased"'
 krs() {
   kiji-review submit "$@" && git checkout master && git merge --ff-only origin/master
 }
