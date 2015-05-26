@@ -210,7 +210,7 @@ krs() {
 #kiji-build aliases
 alias kb='kiji-build'
 
-export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin:$HOME/lib/dart/dart-sdk/bin
 
 #alias arduino
 alias arduino='sudo ~/bin/arduino-1.5.2/arduino'
