@@ -107,13 +107,6 @@ if [ $? -eq 0 ]; then \
 # increase ram allocated to Maven
 export MAVEN_OPTS="-XX:PermSize=2G -Xmx2G"
 
-#source bento
-#Disable in favor of docker bento
-#source ~/lib/kiji-bento-fugu/bin/kiji-env.sh > /dev/null
-
-# alias vpn
-alias wibivpn='sudo openvpn --script-security 3 system  --config ~/bin/client.ovpn'
-
 #!/bin/bash
 function vifi {
   vim $(find -name $1)
@@ -164,69 +157,14 @@ function loop {
   done
 }
 
-docker-enter() {
-  pid=$(docker inspect --format {{.State.Pid}} $1)
-  shift
-  sudo nsenter --target "$pid" --mount --uts --ipc --net --pid "$@"
-}
-
 function pomgrep() {
   find -name pom.xml -exec grep -Hnr --color ${@} "{}" ";"
 }
-
-#post-review alias
-alias post='post-review -o --branch=master --guess-summary --guess-description --bugs-closed=`parse_git_branch`'
-alias postr='post-review -o -r'
 
 #IntelliJ alias
 alias ij='~/lib/idea/bin/idea.sh &'
 #PyCharm alias
 alias pc='~/lib/pycharm-community/bin/pycharm.sh &'
 
-#Maven aliases
-
-#kiji-maven aliases
-alias mcc='kiji-maven clean compile'
-alias mct='kiji-maven clean test'
-alias mcv='kiji-maven clean verify'
-alias mcvst='kiji-maven clean verify -DskipTests'
-alias mcvstsv='kiji-maven clean verify -DskipTests -DskipVerify'
-alias mci='kiji-maven clean install'
-alias mcist='kiji-maven clean install -DskipTests'
-alias mcistsv='kiji-maven clean install -DskipTests -DskipVerify'
-alias mregr='kiji-maven versions:update-properties && kiji-maven clean verify && kiji-maven versions:revert'
-alias mcp='kiji-maven clean package'
-alias mcpst='kiji-maven clean package -DskipTests'
-alias mcpstsv='kiji-maven clean package -DskipTests -DskipVerify'
-
 #make git use vim for commit messages
 export GIT_EDITOR="vim"
-
-#kiji-review aliases
-alias kr='kiji-review'
-alias kri='kiji-review init'
-alias krm='kiji-review mail'
-alias kre='kiji-review export'
-alias krep='kiji-review export --publish'
-alias krepr='kiji-review export --publish --message="rebased"'
-krs() {
-  kiji-review submit "$@" && git checkout master && git merge --ff-only origin/master
-}
-
-
-#kiji-build aliases
-alias kb='kiji-build'
-
-#wibi evtools scripts
-#disabled in favor of pip install
-#export PATH=$PATH:$HOME/src/wibi/devtools/bin/
-
-#alias arduino
-alias arduino='sudo ~/bin/arduino-1.5.2/arduino'
-
-#dart aliases
-alias dart='~/bin/dart/DartEditor &'
-
-#general aliases
-alias c='clear'
-alias lock='i3lock --color=000000'
